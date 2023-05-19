@@ -1,0 +1,825 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+
+        .headerApp{
+            width: 100%;
+            height: 70px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .listBars{
+            padding: 10px;
+        }
+
+        ul{
+            list-style:none
+        }
+
+        .cardBarsCidadeLi{
+            width: 100%;
+            padding: 10px 0px;
+        }
+
+        .cardBarsCidadeLiBar{
+            font-size: 1.3em;
+            font-weight: bold;
+        }
+
+        @media(max-width:500px){
+            header h1{
+                font-size: 1.3em;
+            }
+
+            .listBars{
+                border-radius: 100px 20px 0px 0px;
+                background: rgb(236, 236, 236);
+            }
+
+            .cardBarsName{
+                width: 100%;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                text-decoration: underline;
+            }
+
+            ul{
+                /* width: 100%; */
+            }
+
+            .cardBarsCidadeLiBtn{
+                width: calc(100% - 40px);
+                padding: 15px 10px;
+                margin: 5px;
+                background: green;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                color: #fff;
+                border-radius: 5px;
+                font-weight: bold
+            }
+        }
+
+       
+
+    </style>
+</head>
+<body>
+
+    <div class="container">
+
+        <header class="headerApp">
+            <h1>Lista de bares da região</h1>
+        </header>
+        <body>
+            <section class="listBars">
+
+            </section>
+        </body>
+        <footer>
+
+        </footer>
+
+    </div>
+    
+</body>
+<script>
+
+
+const bares = [
+    {cidade:"Bauru", bares:[
+        {
+            "bar": "Outback Steakhouse",
+            "endereço": "Bauru - SP · (14) 3500-0080"
+        },
+        {
+            "bar": "Avenue Art Pub",
+            "endereço": "Av. Getúlio Vargas, 1226 · (14) 98202-5188"
+        },
+        {
+            "bar": "Vitrola Bar Bauru",
+            "endereço": "R. Ver. Joaquim da Silva Martha, 1735 · (14) 99608-6557"
+        },
+        {
+            "bar": "ÈKÓ PUB",
+            "endereço": "R. Araújo Leite, 14-89"
+        },
+        {
+            "bar": "Amigos Bar",
+            "endereço": "R. Cel. Lima de Figueiredo, 8-20"
+        },
+        {
+            "bar": "Cantinas Bar",
+            "endereço": "R. Rafael Pereira Martini, 12-19"
+        },
+        {
+            "bar": "Buteco do Rastro",
+            "endereço": "Av. Getúlio Vargas, 19-10 · (14) 99693-2621"
+        },
+        {
+            "bar": "Bar Recanto Moraes",
+            "endereço": "Rua Projetada 2 Lote 18 Vargem Limpa · (14) 99800-2527"
+        },
+        {
+            "bar": "Ponto Ideal",
+            "endereço": "Av. São Paulo, 2-2-2-60 · (14) 99851-5233"
+        },
+        {
+            "bar": "Dona Pinguetta Clube do Vinil Bar",
+            "endereço": "R. Constituição, 7-5 Esq. c, R. Hermínio Pinto · (14) 99706-2371"
+        },
+        {
+            "bar": "Balada OFF",
+            "endereço": "Bauru - SP · (14) 99751-7855"
+        },
+        {
+            "bar": "Banda Rockvolver",
+            "endereço": "R. Bernardino de Campos · (14) 99101-7545"
+        },
+        {
+            "bar": "Seo Bigode Bar",
+            "endereço": "Av. Getúlio Vargas, 22-86 · (14) 99902-2286"
+        },
+        {
+            "bar": "SUMMER PALACE BAURU",
+            "endereço": "Av. Odilon Braga, 2-20 · (14) 99161-3763"
+        },
+        {
+            "bar": "James Joyce Irish Pub",
+            "endereço": "Rua Engenheiro Saint Martin, 1602 · (14) 98123-6076"
+        },
+        {
+            "bar": "Bendito Santo Botequim",
+            "endereço": "Av. Getúlio Vargas, 23-98 · (14) 3227-7505"
+        },
+        {
+            "bar": "Barão Bar",
+            "endereço": "R. Henrique Savi, 11-41 · (14) 3313-9155"
+        },
+        {
+            "bar": "Banda Fundo do Baú",
+            "endereço": "Rua Bruno Ítalo Bertuzzo nº 6-15 · (14) 98813-1142"
+        },
+        {
+            "bar": "Jack Music Pub",
+            "endereço": "Av. Duque de Caxias, 8-56 · (14) 99700-3254"
+        }
+    ]},
+    {cidade:"Araraquara", bares:[
+        {
+            "bar": "Bar da Rafaela",
+            "endereço": "Av. Dr. Albert Einstein, 1621 - Parque São Paulo (Vila Xavier · (16) 99709-7710"
+        },
+        {
+            "bar": "Palhoça Music Bar",
+            "endereço": "R. José Galil, 1-229 · (16) 98242-1007"
+        },
+        {
+            "bar": "Corleone Music Hall",
+            "endereço": "R. Gonçalves Dias, 1648 · (16) 99777-1648"
+        },
+        {
+            "bar": "Res Pública Blues Bar",
+            "endereço": "R. Armando de Salles Oliveira, 370 · (16) 99610-3885"
+        },
+        {
+            "bar": "Santomé Bar e Restaurante",
+            "endereço": "Rua João - Rus João de Arruda Falcão, 21 · (16) 99703-6277"
+        },
+        {
+            "bar": "Bar dos Prediletos",
+            "endereço": "R. José Monteiro, 167 · (16) 99793-6553"
+        },
+        {
+            "bar": "Bar Do Português - Araraquara",
+            "endereço": "R. Napoleão Selmi Dei, 943 · (16) 99740-4430"
+        },
+        {
+            "bar": "Bar do Zinho",
+            "endereço": "R. Voluntários da Pátria, 2399 · (16) 3336-0085"
+        },
+        {
+            "bar": "Quintal do Carmo",
+            "endereço": "R. João Gurgel, 1368 · (16) 3322-0409"
+        },
+        {
+            "bar": "Armazém da Vila Bar Araraquara",
+            "endereço": "R. Treze de Maio, 571"
+        },
+        {
+            "bar": "Nos Em Cena Deck Bar",
+            "endereço": "Av. Rodrigo Fernando Grillo, 515 · (16) 3357-4049"
+        },
+        {
+            "bar": "Sr. Botequim",
+            "endereço": "R. São Bento, 1942 · (16) 3397-5447"
+        },
+        {
+            "bar": "Espaço Subterrâneo",
+            "endereço": "R. Cecília Aparecida de Freitas, 37 · (16) 98100-1592"
+        },
+        {
+            "bar": "Bar Dona Judith",
+            "endereço": "R. Napoleão Selmi Dei, 59 · (16) 99722-9220"
+        },
+        {
+            "bar": "Kibe Lounge Bar",
+            "endereço": "R. Henrique Lupo, 828 · (16) 99961-5642"
+        },
+        {
+            "bar": "Boteco Pé na Cova.",
+            "endereço": "Av. Brasil, 1037 · (16) 3461-4080"
+        },
+        {
+            "bar": "Gauchopp",
+            "endereço": "Av. Bento de Abreu, 900 · (16) 3331-3831"
+        },
+        {
+            "bar": "TNC espetto bar",
+            "endereço": "Av. Brasil, 712"
+        },
+        {
+            "bar": "BIRITTAZ COMES E BEBES",
+            "endereço": "Av. Dom Pedro Ⅱ, 1390"
+        },
+        {
+            "bar": "Água Doce Cachaçaria - Araraquara",
+            "endereço": "R. Voluntários da Pátria, 1677 · (16) 3461-7778"
+        }
+    ]},
+    {cidade:"Itápolis", bares:[
+    {
+        "bar": "Elton Carlos Canonico Bar",
+        "endereço": "Av. Frei Paulo Luig, 545 · (16) 3262-6120"
+    },
+    {
+        "bar": "Bar Brasil Itápolis",
+        "endereço": "Av. José Fortuna, 274 · (16) 99710-9271"
+    },
+    {
+        "bar": "Bohemio's Bar",
+        "endereço": "R. Boiadeira, 16 · (16) 3262-7429"
+    },
+    {
+        "bar": "Bar do Pirolla",
+        "endereço": "Av. Pres. Valentim Gentil, 798 · (16) 99781-6891"
+    },
+    {
+        "bar": "Camargo's Bar",
+        "endereço": "Av. Francisco Pôrto, 339 · (16) 99615-7969"
+    },
+    {
+        "bar": "BAR BEIRA RIO",
+        "endereço": "Av. Dr. Araldo do Amaral Arruda, 905"
+    },
+    {
+        "bar": "Bar Do Tota",
+        "endereço": "Av. Bento Cogo · (16) 3262-6120"
+    },
+    {
+        "bar": "Reginaldo's bar e espetaria",
+        "endereço": "Av. Duque de Caxias, 1069 · (16) 99962-5393"
+    },
+    {
+        "bar": "Fly Pub",
+        "endereço": "Estrada Luis Carlos Nigro Mazzo, 691"
+    },
+    {
+        "bar": "Bar Do Silas",
+        "endereço": "Av. José Fortuna, 841"
+    },
+    {
+        "bar": "Emporio Beer",
+        "endereço": "Av. Campos Sales, 1234 · (16) 99748-9148"
+    },
+    {
+        "bar": "bar do trovao",
+        "endereço": "R. Padre Tarallo, 1120 · (16) 99704-9084"
+    },
+    {
+        "bar": "Boteko do Régis",
+        "endereço": "R. José Ramalho, 47 · (16) 3262-0500"
+    },
+    {
+        "bar": "BAR MIX BRASIL",
+        "endereço": "Av. Carlos Adolfson, 1887"
+    },
+    {
+        "bar": "Bebidas Martins",
+        "endereço": "R. Ônix, 2-48 · (16) 99725-8415"
+    },
+    {
+        "bar": "Bar Carríola",
+        "endereço": "Av. José Belarmino, 316"
+    },
+    {
+        "bar": "Quiosque chopp Malte",
+        "endereço": "Unnamed Road · (16) 99770-0218"
+    },
+    {
+        "bar": "Bar e Restaurante Mestre Caipira",
+        "endereço": "R. Ismael Neri Palhares, 17 · (16) 3262-5501"
+    },
+    {
+        "bar": "República TNN",
+        "endereço": "Rua Pero Neto, 1016 - 1016 · (16) 99754-6587"
+    },
+    {
+        "bar": "Bar E Mercearia Nossa Senhora Aparecida",
+        "endereço": "R. Ismael Colete"
+    }
+    ]},
+    {cidade:"Borborema", bares:[
+    {
+        "bar": "Bar do 25",
+        "endereço": "Borborema - SP · (16) 3266-1872"
+    },
+    {
+        "bar": "Vidal's Bar",
+        "endereço": "R. Dr. Valentim Gentil, 65-211"
+    },
+    {
+        "bar": "Bar Do Edinho",
+        "endereço": "R. David Fóster, 90"
+    },
+    {
+        "bar": "Bar da Ana",
+        "endereço": "Borborema - SP"
+    },
+    {
+        "bar": "Petiscaria e mercearia corguinho",
+        "endereço": "Unnamed Road · (16) 99754-0248"
+    },
+    {
+        "bar": "Restaurante da Prainha",
+        "endereço": "Restaurante Prainha do juqueta · (16) 3266-2337"
+    },
+    {
+        "bar": "Pesqueiro Bar Pio XI",
+        "endereço": "Orestina · (16) 98153-7095"
+    },
+    {
+        "bar": "Tiga Lanches / Center lanches",
+        "endereço": "Rua Joaquim Martins Carvalho, 68 · (16) 3266-2254"
+    },
+    {
+        "bar": "Loja Vivo",
+        "endereço": "Rua Major Claudino Do Nascimento, 246, Sala 2 · (16) 99723-1190"
+    },
+    {
+        "bar": "Michel Lanches ( entre sabores ) antigo trailer da avenida",
+        "endereço": "R. Ari de Arruda Ferreira, 20 · (16) 99718-6929"
+    },
+    {
+        "bar": "Hisui's Sushi House",
+        "endereço": "R. Nove de Julho, 1175 · (16) 99621-7430"
+    },
+    {
+        "bar": "Restaurante Heartland",
+        "endereço": "Rodovia estefano fabre, km 11 · (16) 99768-9270"
+    },
+    {
+        "bar": "Seu Boteco",
+        "endereço": "Novo Horizonte - SP · (17) 99668-0849"
+    },
+    {
+        "bar": "Bar Do Borborema",
+        "endereço": "Catanduva - SP"
+    },
+    {
+        "bar": "Rusticão Bar E Música",
+        "endereço": "Gavião Peixoto - SP"
+    },
+    {
+        "bar": "Bar Recanto Dos Sonhos",
+        "endereço": "Pederneiras - SP · (14) 99624-8342"
+    },
+    {
+        "bar": "Boteco São Longuinho",
+        "endereço": "Ribeirão Bonito - SP"
+    },
+    {
+        "bar": "Garage Route 66 Bar",
+        "endereço": "Piratininga - SP · (14) 99184-9405"
+    },
+    {
+        "bar": "Music Bar",
+        "endereço": "Ibitinga - SP"
+    },
+    {
+        "bar": "Cantinas Bar",
+        "endereço": "Bauru - SP"
+    }
+    ]},
+    {cidade:"Jaú", bares:[
+    {
+        "bar": "Omega Lounge Bar",
+        "endereço": "R. Humaitá, 630"
+    },
+    {
+        "bar": "Brother's Lounge Jau",
+        "endereço": "R. Campos Sales, 771 · (14) 99902-3398"
+    },
+    {
+        "bar": "1977 Garage",
+        "endereço": "Av. Inácio Curi, 2540 · (14) 99804-3059"
+    },
+    {
+        "bar": "Premium Sports Grill Jahu",
+        "endereço": "Av. Frederico Ozanan, 567 · (14) 99797-8022"
+    },
+    {
+        "bar": "Santo Bar",
+        "endereço": "Av. Dr. Quinzinho, 320"
+    },
+    {
+        "bar": "Armazém São Benedito",
+        "endereço": "R. Maj. Prado, 1222 · (14) 99183-4774"
+    },
+    {
+        "bar": "Barban Pub",
+        "endereço": "R. Saldanha Marinho, 1181 · (14) 99193-8804"
+    },
+    {
+        "bar": "Bar Los Amigos",
+        "endereço": "Av. João Ferraz Neto, 1730"
+    },
+    {
+        "bar": "Bar Da Ana Eletronic Lounge",
+        "endereço": "R. Amaral Gurgel, 29"
+    },
+    {
+        "bar": "Riverside Pub",
+        "endereço": "Av. Rodolfo Magnani, 577"
+    },
+    {
+        "bar": "Gulana Bar",
+        "endereço": "Av. Dudu Ferraz, 880 · (14) 3624-4949"
+    },
+    {
+        "bar": "Jimi's Bar",
+        "endereço": "R. Amaral Gurgel, 228 · (14) 3624-8091"
+    },
+    {
+        "bar": "Bar Trem das Onze Jaú",
+        "endereço": "Av. Pref. Luíz Liarte · (14) 3418-9060"
+    },
+    {
+        "bar": "Barça Bar - Jaú",
+        "endereço": "Av. Frederico Ozanan, 26 · (14) 99135-2449"
+    },
+    {
+        "bar": "Vitrolê Discos | Pub",
+        "endereço": "Rua Francisco Carvalhaes de Paiva 48 · (14) 98110-4448"
+    },
+    {
+        "bar": "Snooker Bar",
+        "endereço": "R. Humaitá, 1081 · (14) 99737-6074"
+    },
+    {
+        "bar": "Retro BAR",
+        "endereço": "Av. Dudu Ferraz, 135"
+    },
+    {
+        "bar": "Seo Armando",
+        "endereço": "R. Dr. Joaquim Gomes dos Réis, 222"
+    },
+    {
+        "bar": "Recanto Bar AABB Jaú",
+        "endereço": "R. Luís Paiva, 370"
+    },
+    {
+        "bar": "Sala Vip bar",
+        "endereço": "R. Paissandú, 330 · (14) 99605-3802"
+    }
+    ]},
+    {cidade:"Iacanga", bares:[
+    {
+        "bar": "Bar e Petiscaria da ROSA",
+        "endereço": "Rua Nove de Julho, 402 · (14) 99810-2212"
+    },
+    {
+        "bar": "BAR DO ORMAR",
+        "endereço": "R. Rodrigo de Campos, 575"
+    },
+    {
+        "bar": "Bar do Edinho",
+        "endereço": "Av. Laemert Garcia dos Santos, 1268"
+    },
+    {
+        "bar": "Bar Do Joel",
+        "endereço": "R. Profa. Lúcia de G Almeida, 95-189 · (14) 99674-9518"
+    },
+    {
+        "bar": "Bar Do Biriu",
+        "endereço": "R. José Ticianelli Neto"
+    },
+    {
+        "bar": "Bar do Nestor",
+        "endereço": "Av. das Primaveras, 442 · (14) 99688-8181"
+    },
+    {
+        "bar": "Restaurante e pizzaria União",
+        "endereço": "Av. Joaquim Pedro de Oliveira, 354 · (14) 3294-1729"
+    },
+    {
+        "bar": "Rusticão Bar E Música",
+        "endereço": "Gavião Peixoto - SP"
+    },
+    {
+        "bar": "Blasterchef Pizzaria e Esfiharia",
+        "endereço": "R. Rodrigo de Campos, 343 · (14) 99810-0810"
+    },
+    {
+        "bar": "Music Bar",
+        "endereço": "Ibitinga - SP"
+    },
+    {
+        "bar": "Bar Recanto Dos Sonhos",
+        "endereço": "Pederneiras - SP · (14) 99624-8342"
+    },
+    {
+        "bar": "Bar Recanto Moraes",
+        "endereço": "Bauru - SP · (14) 99800-2527"
+    },
+    {
+        "bar": "Avenue Art Pub",
+        "endereço": "Bauru - SP · (14) 98202-5188"
+    },
+    {
+        "bar": "Amigos Bar",
+        "endereço": "Bauru - SP"
+    },
+    {
+        "bar": "Kanto do Lago",
+        "endereço": "Bariri - SP · (14) 98211-8240"
+    },
+    {
+        "bar": "Vitrola Bar Bauru",
+        "endereço": "Bauru - SP · (14) 99608-6557"
+    },
+    {
+        "bar": "Cantinas Bar",
+        "endereço": "Bauru - SP"
+    },
+    {
+        "bar": "Bar Iacanga",
+        "endereço": "Americana - SP"
+    },
+    {
+        "bar": "ÈKÓ PUB",
+        "endereço": "Bauru - SP"
+    },
+    {
+        "bar": "Ponto Ideal",
+        "endereço": "Bauru - SP · (14) 99851-5233"
+    }
+    ]},
+    {cidade:"Taquaritinga", bares:[
+    {
+        "bar": "Bar Esquina do ROck",
+        "endereço": "R. Rui Barbosa, 595-475"
+    },
+    {
+        "bar": "Fuego Music Pub",
+        "endereço": "Av. Savério Salvagni, 100 · (16) 99386-3631"
+    },
+    {
+        "bar": "Buteco do Deivid",
+        "endereço": "R. Miguel Anselmo, 1070"
+    },
+    {
+        "bar": "BUTEKO DAS MENINAS",
+        "endereço": "R. Vinte e Quatro de Outubro, 246 · (16) 98202-1726"
+    },
+    {
+        "bar": "Lúpulo Bar",
+        "endereço": "R. Sete de Setembro, 1026"
+    },
+    {
+        "bar": "Bar do Zé Maria",
+        "endereço": "R. José Arruda Campos, 286 · (16) 99212-7997"
+    },
+    {
+        "bar": "Bar do Munhoz",
+        "endereço": "15900-000 · 3253-1048"
+    },
+    {
+        "bar": "sonia",
+        "endereço": "R. José F. de Assis, 116 · (16) 3253-4399"
+    },
+    {
+        "bar": "Bar Do Tadau",
+        "endereço": "Centro, R. Visc. do Rio Branco"
+    },
+    {
+        "bar": "Bar Avenida Org.Neia.",
+        "endereço": "Av. Heitor Alves Gomes"
+    },
+    {
+        "bar": "Restaurante e Espetaria Nosso Buteco",
+        "endereço": "Av. Dr. Francisco Área Leão, 1441 · (16) 99797-4738"
+    },
+    {
+        "bar": "bar da val",
+        "endereço": "R. Gen. Osório, 271 · (16) 99743-4050"
+    },
+    {
+        "bar": "Bar Copacabana",
+        "endereço": "R. Prudente de Moraes, 1025 · (16) 3253-2890"
+    },
+    {
+        "bar": "Dona Flor | Bar e Restaurante",
+        "endereço": "Unnamed Road"
+    },
+    {
+        "bar": "Bar Do Well",
+        "endereço": "R. Visc. do Rio Branco, 139 · (16) 99792-9196"
+    },
+    {
+        "bar": "BAR E MERCEARIA AMIGOS DO ZEZÉ",
+        "endereço": "R. Olívio Libanori, 80 · (16) 99797-2982"
+    },
+    {
+        "bar": "Centro Etílico Cultural Gastronômico - Burro Voador",
+        "endereço": "Av. Calil José Dib · (16) 99757-1508"
+    },
+    {
+        "bar": "Bar do Tonho",
+        "endereço": "Av. Adamo Lui, 2027"
+    },
+    {
+        "bar": "Bar Do Ganso",
+        "endereço": "R. Pedro da Costa Mendonça"
+    },
+    {
+        "bar": "Bar 51",
+        "endereço": "Av. Heitor Alves Gomes"
+    }
+    ]},
+    {cidade:"Novo Horizonte", bares:[
+    {
+        "bar": "Seu Boteco",
+        "endereço": "R. Prudente de Morães, 58 · (17) 99668-0849"
+    },
+    {
+        "bar": "Adega Rock Bar",
+        "endereço": "R. Trajano Machado, 1037 · (17) 99721-6496"
+    },
+    {
+        "bar": "Lera's Bar",
+        "endereço": "R. Quinze de Novembro, 756"
+    },
+    {
+        "bar": "Bonani Beer Novo Horizonte",
+        "endereço": "R. Trajano Machado, 1092 · (17) 3543-2174"
+    },
+    {
+        "bar": "Tequila’s Bar",
+        "endereço": "R. Pascoal Antônio de Lazari"
+    },
+    {
+        "bar": "Esquina Beer",
+        "endereço": "Av. da Saudade, 1946-1980"
+    },
+    {
+        "bar": "Bar e Choperia Chopasso",
+        "endereço": "Av. Guido Dela Togna, 45 · (17) 99639-9056"
+    },
+    {
+        "bar": "2º Expediente Espetos Porções &amp; Chopperia",
+        "endereço": "Av. Ângela Blaso Segreto, 515 · (17) 99226-2343"
+    },
+    {
+        "bar": "Bar",
+        "endereço": "Novo Horizonte - SP"
+    },
+    {
+        "bar": "Tabacaria Leone",
+        "endereço": "Viva Mais 1 - Av. Ângela Blaso Segreto, 970 · (17) 99728-9421"
+    },
+    {
+        "bar": "BAR DA LEU",
+        "endereço": "R. Dervile S"
+    },
+    {
+        "bar": "BAR DO GE",
+        "endereço": "R. Lazaro Machado de Oliveira"
+    },
+    {
+        "bar": "Espetaria Via Coronel",
+        "endereço": "Av. Cel. Junqueira, 1030 · (17) 99614-8938"
+    }
+    ]},
+];
+
+const container = document.querySelector(".listBars");
+
+let countCidades = 0;
+let countBares = 0;
+
+
+function limpaNumber(n){
+
+    let nn = n.replace("(","");
+    nn = nn.replace(")","");
+    nn = nn.replace(" ","");
+    nn = nn.replace("-","");
+    
+    return nn;
+
+}
+
+// limpaNumber("(12) 93456-7890");
+
+
+function extractPhoneNumbers(text) {
+
+  const regex = /\(\d{2}\)\s?\d{5}-\d{4}/g;
+  const phoneNumbers = text.match(regex);
+
+  return phoneNumbers ? limpaNumber(...phoneNumbers) : [];
+
+}
+
+console.log(extractPhoneNumbers("Olá! Meu número de telefone é (12) 93456-7890. Entre em contato!"));
+
+bares.forEach(function(v, i){
+
+    countCidades++;
+
+    const cardBars = document.createElement('article');
+    cardBars.setAttribute('class', 'cardBars');
+
+        const cardBarsName = document.createElement('h2');
+        cardBarsName.setAttribute('class', 'cardBarsName');
+        cardBarsName.innerHTML = v.cidade;
+
+        const cardBarsCidades = document.createElement('ul');
+        cardBarsCidades.setAttribute('class', 'cardBarsCidades');
+
+        cardBars.appendChild(cardBarsName);
+        cardBars.appendChild(cardBarsCidades);
+
+    v.bares.forEach(function(v, i){
+
+        countBares++;
+
+        const cardBarsCidadeLi = document.createElement('li');
+        cardBarsCidadeLi.setAttribute('class', 'cardBarsCidadeLi');
+
+            const cardBarsCidadeLiBar = document.createElement('li');
+            cardBarsCidadeLiBar.setAttribute('class', 'cardBarsCidadeLiBar');
+            cardBarsCidadeLiBar.innerHTML = v.bar;
+
+            const cardBarsCidadeLiEndereco = document.createElement('li');
+            cardBarsCidadeLiEndereco.setAttribute('class', 'cardBarsCidadeLiEndereco');
+            cardBarsCidadeLiEndereco.innerHTML = v.endereço;
+
+            console.log(extractPhoneNumbers(v.endereço));
+
+            const cardBarsCidadeLiBtn = document.createElement('div');
+            cardBarsCidadeLiBtn.setAttribute('class', 'cardBarsCidadeLiBtn');
+            cardBarsCidadeLiBtn.innerHTML = "Entrar em contato";
+            cardBarsCidadeLiBtn.addEventListener("click", function(){
+
+                if (v.endereço) {
+                    window.location.href = `https://api.whatsapp.com/send?phone=55${v.endereço}&text=Olá Tudo bem?`;
+                }
+
+            });
+        
+            
+
+            cardBarsCidadeLi.appendChild(cardBarsCidadeLiBar);
+            cardBarsCidadeLi.appendChild(cardBarsCidadeLiEndereco);
+            cardBarsCidadeLi.appendChild(cardBarsCidadeLiBtn);
+        
+
+        cardBarsCidades.appendChild(cardBarsCidadeLi);
+
+    });
+
+    container.appendChild(cardBars);
+
+});
+
+console.log([
+    countCidades,
+    countBares
+])
+
+
+
+
+</script>
+</html>
