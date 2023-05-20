@@ -4,12 +4,12 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Lista de bares da região</title>
     <style>
 
         .headerApp{
             width: 100%;
-            height: 70px;
+            height: 100px;
             display: flex;
             align-items: center;
             justify-content: center;
@@ -785,7 +785,7 @@ bares.forEach(function(v, i){
             cardBarsCidadeLiEndereco.setAttribute('class', 'cardBarsCidadeLiEndereco');
             cardBarsCidadeLiEndereco.innerHTML = v.endereço;
 
-            console.log(extractPhoneNumbers(v.endereço));
+            // console.log(extractPhoneNumbers(v.endereço));
 
             const cardBarsCidadeLiBtn = document.createElement('div');
             cardBarsCidadeLiBtn.setAttribute('class', 'cardBarsCidadeLiBtn');
@@ -793,7 +793,7 @@ bares.forEach(function(v, i){
             cardBarsCidadeLiBtn.addEventListener("click", function(){
 
                 if (v.endereço) {
-                    window.location.href = `https://api.whatsapp.com/send?phone=55${v.endereço}&text=Olá Tudo bem?`;
+                    window.location.href = `https://api.whatsapp.com/send?phone=55${extractPhoneNumbers(v.endereço)}&text=Olá Tudo bem?`;
                 }
 
             });
