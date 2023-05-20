@@ -7,6 +7,24 @@
     <title>Lista de bares da região</title>
     <style>
 
+        .message{
+            position: fixed;
+            width: 90%;
+            padding: 10px;
+            /* display: flex; */
+            align-items: center;
+            justify-content: center;
+            background: yellow;
+            display: none;
+            border-radius: 5px;
+            box-shadow: 0px 0px 3px solid #000;
+            font-weight: bold;
+        }
+
+        .btn-ligar{
+            padding: 7px 15px;
+        }
+
         .headerApp{
             width: 100%;
             height: 100px;
@@ -76,6 +94,8 @@
 <body>
 
     <div class="container">
+
+        <div class="message"></div>
 
         <header class="headerApp">
             <h1>Lista de bares da região</h1>
@@ -751,7 +771,29 @@ function extractPhoneNumbers(text) {
 
 }
 
-console.log(extractPhoneNumbers("Olá! Meu número de telefone é (12) 93456-7890. Entre em contato!"));
+function extraiTelefoneFixo(text){
+
+    const padraoTelefone = /\(\d{2}\) \d{4}-\d{4}/g;
+    const numerosTelefone = text.match(padraoTelefone);
+
+    // console.log(numerosTelefone)
+
+    if (numerosTelefone) {
+
+        this.ligacao = true;
+        console.log(limpaNumber(...numerosTelefone));
+        return limpaNumber(...numerosTelefone);
+
+    }
+
+    // this.ligacao = false;
+   
+
+}
+
+
+
+// console.log(extractPhoneNumbers("Olá! Meu número de telefone é (12) 93456-7890. Entre em contato!"));
 
 bares.forEach(function(v, i){
 
@@ -786,14 +828,34 @@ bares.forEach(function(v, i){
             cardBarsCidadeLiEndereco.innerHTML = v.endereço;
 
             // console.log(extractPhoneNumbers(v.endereço));
+            extraiTelefoneFixo(v.endereço);
 
             const cardBarsCidadeLiBtn = document.createElement('div');
             cardBarsCidadeLiBtn.setAttribute('class', 'cardBarsCidadeLiBtn');
             cardBarsCidadeLiBtn.innerHTML = "Entrar em contato";
             cardBarsCidadeLiBtn.addEventListener("click", function(){
 
-                if (v.endereço) {
+                const message = document.querySelector(".message");
+
+                if (extractPhoneNumbers(v.endereço).length) {
+
+                    this.message = "";
+                    message.style.display = 'none';
+
                     window.location.href = `https://api.whatsapp.com/send?phone=55${extractPhoneNumbers(v.endereço)}&text=Olá Tudo bem?`;
+
+                }else{
+
+                    if (extraiTelefoneFixo(v.endereço)) {
+                        this.message = `Infelizmente o número não está cadastrado no WhatsApp ou não existe, porém encontrei um número fixo, deseja ligar? <a class='btn-ligar' href="tel:+55${extraiTelefoneFixo(v.endereço)}">Ligar</a>`;
+                    }else{
+                        this.message = `Não encontrei nenhum número :(`;
+                    }
+
+                    const message = document.querySelector(".message");
+                    message.innerHTML = this.message;
+                    message.style.display = 'flex';
+                    console.log(this.message);
                 }
 
             });
